@@ -3,131 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Library Book Management System</title>
+<title>Gaming Tournament Registration</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#4facfe,#00f2fe);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+background:linear-gradient(135deg,#090909,#111827,#1f1147,#000000);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
 }
 
 .container{
-    width:900px;
-    max-width:100%;
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+width:950px;
+max-width:100%;
+padding:35px;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(14px);
+box-shadow:0 0 40px rgba(0,255,255,.2);
+border:1px solid rgba(255,255,255,.15);
+
 }
 
 h1{
-    text-align:center;
-    color:#0d47a1;
-    margin-bottom:25px;
+
+text-align:center;
+color:white;
+font-size:36px;
+margin-bottom:30px;
+letter-spacing:2px;
+text-shadow:0 0 15px cyan;
+
 }
 
 label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#333;
+
+display:block;
+margin-bottom:8px;
+color:#fff;
+font-weight:bold;
+
 }
 
 input,
 select{
-    width:100%;
-    padding:12px;
-    margin-bottom:18px;
-    border:2px solid #ddd;
-    border-radius:8px;
-    font-size:15px;
+
+width:100%;
+padding:14px;
+margin-bottom:18px;
+border:none;
+border-radius:12px;
+font-size:15px;
+background:rgba(255,255,255,.12);
+color:white;
+outline:none;
+transition:.3s;
+
+}
+
+input::placeholder{
+
+color:#d0d0d0;
+
 }
 
 input:focus,
 select:focus{
-    outline:none;
-    border-color:#2196f3;
+
+background:rgba(255,255,255,.2);
+box-shadow:0 0 15px cyan;
+
 }
 
 button{
-    padding:12px 22px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    color:white;
-    font-size:15px;
-    font-weight:bold;
-    margin-right:10px;
-    margin-bottom:15px;
-    background:#1976d2;
-    transition:.3s;
+
+padding:13px 22px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
+margin-right:10px;
+margin-top:8px;
+color:white;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+transition:.3s;
+
 }
 
 button:hover{
-    background:#0d47a1;
-    transform:translateY(-2px);
+
+transform:translateY(-3px);
+box-shadow:0 0 20px cyan;
+
+}
+
+button:active{
+
+transform:scale(.96);
+
 }
 
 hr{
-    margin:20px 0;
+
+margin:28px 0;
+border:none;
+height:2px;
+background:rgba(255,255,255,.2);
+
 }
 
 #count{
-    display:inline-block;
-    margin-top:10px;
-    background:#e3f2fd;
-    padding:10px 18px;
-    border-radius:8px;
-    font-weight:bold;
-    color:#1565c0;
+
+display:inline-block;
+margin-top:15px;
+padding:12px 18px;
+border-radius:10px;
+font-weight:bold;
+color:white;
+background:linear-gradient(45deg,#7b2ff7,#f107a3);
+
 }
 
 table{
     width:100%;
-    border-collapse:collapse;
     margin-top:25px;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,255,255,.2);
 }
 
 th{
-    background:#1976d2;
+    background:linear-gradient(45deg,#00c6ff,#0072ff);
     color:white;
-    padding:12px;
+    padding:14px;
+    font-size:16px;
+    letter-spacing:1px;
 }
 
 td{
-    padding:12px;
+    padding:14px;
     text-align:center;
-    border-bottom:1px solid #ddd;
+    color:white;
+    border-bottom:1px solid rgba(255,255,255,.15);
 }
 
 tr:nth-child(even){
-    background:#f5f9ff;
+    background:rgba(255,255,255,.06);
 }
 
 tr:hover{
-    background:#e3f2fd;
+    background:rgba(0,255,255,.15);
+    transition:.3s;
 }
 
 #message{
     margin-top:20px;
-    padding:12px;
-    background:#eef6ff;
-    color:#0d47a1;
-    border-left:5px solid #2196f3;
-    border-radius:6px;
+    padding:14px;
+    border-radius:10px;
+    color:white;
     font-weight:bold;
+    background:rgba(255,255,255,.08);
+    border-left:5px solid cyan;
+    box-shadow:0 0 15px rgba(0,255,255,.2);
+}
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00c6ff;
+    border-radius:10px;
 }
 
 @media(max-width:768px){
@@ -136,82 +213,74 @@ tr:hover{
     padding:20px;
 }
 
+h1{
+    font-size:28px;
+}
+
+button{
+    width:100%;
+    margin-bottom:10px;
+}
+
 table{
     display:block;
     overflow-x:auto;
 }
 
-button{
-    width:100%;
-}
-
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Library Book Management System</h1>
+<h1>🎮 Gaming Tournament Registration</h1>
 
-<label>Book Name</label>
+<label>Player Name</label>
+<input type="text" id="playerName" placeholder="Enter Player Name">
 
-<input
-type="text"
-id="bookName"
-placeholder="Enter Book Name">
+<label>Game Name</label>
 
-<label>Author Name</label>
-
-<input
-type="text"
-id="authorName"
-placeholder="Enter Author Name">
-
-<label>Book Status</label>
-
-<select id="bookStatus">
-
-<option>Available</option>
-
-<option>Issued</option>
-
+<select id="gameName">
+<option>BGMI</option>
+<option>Free Fire MAX</option>
+<option>Valorant</option>
+<option>Call of Duty Mobile</option>
+<option>EA FC 26</option>
+<option>Minecraft</option>
 </select>
 
-<button onclick="addBook()">
-Add Book
-</button>
+<label>Team Name</label>
+<input type="text" id="teamName" placeholder="Enter Team Name">
+
+<label>Registration Status</label>
+
+<select id="status">
+<option>Registered</option>
+<option>Pending</option>
+</select>
+
+<button onclick="addPlayer()">Register Player</button>
 
 <hr>
 
-<label>Search Book</label>
+<label>Search Player</label>
 
-<input
-type="text"
-id="searchBook"
-placeholder="Enter Book Name">
+<input type="text" id="searchPlayer" placeholder="Enter Player Name">
 
-<button onclick="searchBook()">
-Search
-</button>
+<button onclick="searchPlayer()">Search</button>
 
-<h3 id="count">
-Total Books : 0
-</h3>
+<h3 id="count">Total Players : 0</h3>
 
 <table>
 
 <tr>
-
-<th>Book</th>
-
-<th>Author</th>
-
+<th>Player</th>
+<th>Game</th>
+<th>Team</th>
 <th>Status</th>
-
 </tr>
 
 <tbody id="tableData">
@@ -226,52 +295,61 @@ Total Books : 0
 
 <script>
 
-let books = [];
+let players=[];
 
-function addBook(){
+function addPlayer(){
 
-let name = document.getElementById("bookName").value;
-let author = document.getElementById("authorName").value;
-let status = document.getElementById("bookStatus").value;
+let player=document.getElementById("playerName").value;
+let game=document.getElementById("gameName").value;
+let team=document.getElementById("teamName").value;
+let status=document.getElementById("status").value;
 
-if(name=="" || author==""){
+if(player=="" || team==""){
 alert("Please Fill All Details");
 return;
 }
 
-let book = {
-name:name,
-author:author,
+let data={
+player:player,
+game:game,
+team:team,
 status:status
 };
 
-books.push(book);
+players.push(data);
 
-showBooks();
+showPlayers();
 
-document.getElementById("bookName").value="";
-document.getElementById("authorName").value="";
-document.getElementById("bookStatus").value="Available";
+document.getElementById("playerName").value="";
+document.getElementById("teamName").value="";
+document.getElementById("gameName").value="BGMI";
+document.getElementById("status").value="Registered";
 
 }
 
-function showBooks(){
+function showPlayers(){
 
 let text="";
 
-for(let i=0;i<books.length;i++){
+for(let i=0;i<players.length;i++){
 
 text=text+"<tr>";
 
-text=text+"<td>"+books[i].name+"</td>";
+text=text+"<td>"+players[i].player+"</td>";
 
-text=text+"<td>"+books[i].author+"</td>";
+text=text+"<td>"+players[i].game+"</td>";
 
-if(books[i].status=="Available"){
-text=text+"<td style='color:green;font-weight:bold;'>"+books[i].status+"</td>";
+text=text+"<td>"+players[i].team+"</td>";
+
+if(players[i].status=="Registered"){
+
+text=text+"<td style='color:#00ff66;font-weight:bold;'>"+players[i].status+"</td>";
+
 }
 else{
-text=text+"<td style='color:red;font-weight:bold;'>"+books[i].status+"</td>";
+
+text=text+"<td style='color:#ff4d4d;font-weight:bold;'>"+players[i].status+"</td>";
+
 }
 
 text=text+"</tr>";
@@ -280,24 +358,25 @@ text=text+"</tr>";
 
 document.getElementById("tableData").innerHTML=text;
 
-document.getElementById("count").innerHTML="Total Books : "+books.length;
+document.getElementById("count").innerHTML="Total Players : "+players.length;
 
 }
 
-function searchBook(){
+function searchPlayer(){
 
-let search=document.getElementById("searchBook").value;
+let search=document.getElementById("searchPlayer").value;
 
 let found=false;
 
-for(let i=0;i<books.length;i++){
+for(let i=0;i<players.length;i++){
 
-if(books[i].name.toLowerCase()==search.toLowerCase()){
+if(players[i].player.toLowerCase()==search.toLowerCase()){
 
 document.getElementById("message").innerHTML=
-"Book Found : "+books[i].name+
-" | Author : "+books[i].author+
-" | Status : "+books[i].status;
+"🎮 Player Found : <b>"+players[i].player+
+"</b> | Game : <b>"+players[i].game+
+"</b> | Team : <b>"+players[i].team+
+"</b> | Status : <b>"+players[i].status+"</b>";
 
 found=true;
 
@@ -307,7 +386,8 @@ found=true;
 
 if(found==false){
 
-document.getElementById("message").innerHTML="Book Not Found";
+document.getElementById("message").innerHTML=
+"❌ Player Not Found";
 
 }
 
