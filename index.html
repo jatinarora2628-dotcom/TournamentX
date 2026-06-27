@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library Book Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.container{
+    width:900px;
+    max-width:100%;
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#333;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    margin-bottom:18px;
+    border:2px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#2196f3;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    margin-right:10px;
+    margin-bottom:15px;
+    background:#1976d2;
+    transition:.3s;
+}
+
+button:hover{
+    background:#0d47a1;
+    transform:translateY(-2px);
+}
+
+hr{
+    margin:20px 0;
+}
+
+#count{
+    display:inline-block;
+    margin-top:10px;
+    background:#e3f2fd;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:bold;
+    color:#1565c0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+}
+
+th{
+    background:#1976d2;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:nth-child(even){
+    background:#f5f9ff;
+}
+
+tr:hover{
+    background:#e3f2fd;
+}
+
+#message{
+    margin-top:20px;
+    padding:12px;
+    background:#eef6ff;
+    color:#0d47a1;
+    border-left:5px solid #2196f3;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+
+.container{
+    padding:20px;
+}
+
+table{
+    display:block;
+    overflow-x:auto;
+}
+
+button{
+    width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Library Book Management System</h1>
+
+<label>Book Name</label>
+
+<input
+type="text"
+id="bookName"
+placeholder="Enter Book Name">
+
+<label>Author Name</label>
+
+<input
+type="text"
+id="authorName"
+placeholder="Enter Author Name">
+
+<label>Book Status</label>
+
+<select id="bookStatus">
+
+<option>Available</option>
+
+<option>Issued</option>
+
+</select>
+
+<button onclick="addBook()">
+Add Book
+</button>
+
+<hr>
+
+<label>Search Book</label>
+
+<input
+type="text"
+id="searchBook"
+placeholder="Enter Book Name">
+
+<button onclick="searchBook()">
+Search
+</button>
+
+<h3 id="count">
+Total Books : 0
+</h3>
+
+<table>
+
+<tr>
+
+<th>Book</th>
+
+<th>Author</th>
+
+<th>Status</th>
+
+</tr>
+
+<tbody id="tableData">
+
+</tbody>
+
+</table>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+let books = [];
+
+function addBook(){
+
+let name = document.getElementById("bookName").value;
+let author = document.getElementById("authorName").value;
+let status = document.getElementById("bookStatus").value;
+
+if(name=="" || author==""){
+alert("Please Fill All Details");
+return;
+}
+
+let book = {
+name:name,
+author:author,
+status:status
+};
+
+books.push(book);
+
+showBooks();
+
+document.getElementById("bookName").value="";
+document.getElementById("authorName").value="";
+document.getElementById("bookStatus").value="Available";
+
+}
+
+function showBooks(){
+
+let text="";
+
+for(let i=0;i<books.length;i++){
+
+text=text+"<tr>";
+
+text=text+"<td>"+books[i].name+"</td>";
+
+text=text+"<td>"+books[i].author+"</td>";
+
+if(books[i].status=="Available"){
+text=text+"<td style='color:green;font-weight:bold;'>"+books[i].status+"</td>";
+}
+else{
+text=text+"<td style='color:red;font-weight:bold;'>"+books[i].status+"</td>";
+}
+
+text=text+"</tr>";
+
+}
+
+document.getElementById("tableData").innerHTML=text;
+
+document.getElementById("count").innerHTML="Total Books : "+books.length;
+
+}
+
+function searchBook(){
+
+let search=document.getElementById("searchBook").value;
+
+let found=false;
+
+for(let i=0;i<books.length;i++){
+
+if(books[i].name.toLowerCase()==search.toLowerCase()){
+
+document.getElementById("message").innerHTML=
+"Book Found : "+books[i].name+
+" | Author : "+books[i].author+
+" | Status : "+books[i].status;
+
+found=true;
+
+}
+
+}
+
+if(found==false){
+
+document.getElementById("message").innerHTML="Book Not Found";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
